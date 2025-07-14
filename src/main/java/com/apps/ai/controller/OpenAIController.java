@@ -9,16 +9,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.apps.ai.service.AIService;
+
 @RestController
 @RequestMapping("api/openai")
 public class OpenAIController {
 	
 	@Autowired
-	private OpenAiChatModel openAiChatModel;
+	private AIService aiService;
 
 	@GetMapping("/ask")
 	public ResponseEntity<String> getResponse(@RequestParam String prompt) {
-		String response = openAiChatModel.call(prompt);
+		String response = aiService.getChatResponse(prompt);
 		return ResponseEntity.ok(response);
 	}
 
