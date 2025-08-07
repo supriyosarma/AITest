@@ -1,7 +1,6 @@
 
 package com.apps.ai.controller;
 
-import org.springframework.ai.openai.OpenAiChatModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.apps.ai.service.AIService;
 
+import jakarta.servlet.http.HttpSession;
+
 @RestController
 @RequestMapping("api/openai")
 public class OpenAIController {
@@ -18,17 +19,36 @@ public class OpenAIController {
 	@Autowired
 	private AIService aiService;
 
+	
+	/**
+	 * Handles ask requests.
+	 * 
+	 * @param prompt The user's prompt.
+	 * @return The AI's response to the prompt.
+	 */
 	@GetMapping("/ask")
-	public ResponseEntity<String> getResponse(@RequestParam String prompt) {
-		String response = aiService.getChatResponse(prompt);
-		System.out.println("test commit");
+	public ResponseEntity<String> getAskResponse(@RequestParam String prompt) {
+		String response = aiService.getAskResponse(prompt);
 		return ResponseEntity.ok(response);
 	}
 
-	public String getChatResponse(String chatPrompt) {
-		// Placeholder for OpenAI Chat API call logic
-		// This method should interact with the OpenAI Chat API to get a response
-		// based on the chat prompt
-		return "Chat response from OpenAI for prompt: " + chatPrompt;
+	/*
+	 * @GetMapping("/chat") public ResponseEntity<String>
+	 * getChatResponse(@RequestParam String prompt) { String response =
+	 * aiService.getChatResponse(prompt); return ResponseEntity.ok(response); }
+	 */
+	
+	/**
+	 * Handles chat requests, maintaining session history.
+	 * 
+	 * @param prompt  The user's chat prompt.
+	 * @param session The HTTP session to maintain chat history.
+	 * @return The AI's response to the chat prompt.
+	 */
+	@GetMapping("/chat")
+	public ResponseEntity<String> getChatResponse(@RequestParam String prompt, HttpSession session) {
+
+	    String response = aiService.getChatResponse(prompt, session);
+	    return ResponseEntity.ok(response);
 	}
 }
