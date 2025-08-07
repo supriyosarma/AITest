@@ -1,25 +1,72 @@
-## Overview
-This is a Java-based project built using Spring Boot, Maven and Spring AI. It includes integrations with AI services such as OpenAI and provides RESTful web services to provide prompts and get responses.
+# 🤖 AI-Powered Java App with Spring Boot & Spring AI (OpenAI Integration)
 
-## Features
-- RESTful API development with Spring Web.
-- AI integrations using Spring AI for OpenAI.
-- Maven-based build and dependency management.
+This project demonstrates how to integrate **OpenAI's powerful language models** with a **Java Spring Boot** application using **Spring AI**. It exposes clean, RESTful APIs that allow users to send prompts and receive intelligent responses from OpenAI.
 
-## Prerequisites
-- Java 17 or higher
-- Maven 3.8.1 or higher
+The application supports contextual AI conversations by retaining chat history during a user's session using HttpSession.
 
-## Getting Started
+---
+
+## ✨ Features
+
+- ✅ RESTful API built with **Spring Web**
+- 🤖 Seamless AI integration using **Spring AI + OpenAI**
+- 🔧 Clean Maven project structure for easy build & management
+- 🧪 Ready for extension (chatbots, summarizers, resume tools, etc.)
+
+---
+
+## 🛠️ Tech Stack
+
+- **Java 17+**
+- **Spring Boot**
+- **Spring AI**
+- **Maven**
+- **OpenAI API**
+
+---
+
+## 📦 Prerequisites
+
+- Java **17 or higher**
+- Maven **3.8.1 or higher**
+- OpenAI API Key (`OPENAI_API_KEY` used as a property)
+
+---
+
+## 🚀 Getting Started
+
+### Clone the Repository
+
+git clone https://github.com/supriyosarma/AITest.git
+
+### Configure API Key
+
+Generate the API key from OpenAI website and put it in the properties file placeholder.
 
 ### Build the Project
-Run the following command to build the project:
 
-- mvn clean install
+mvn clean install
 
 ### Run the Application
-Start the application using:
 
-- mvn spring-boot:run
+mvn spring-boot:run
 
-The application will be available at `http://localhost:8080`.
+📍 The application will start on:
+http://localhost:8080
+
+### Sample Endpoint
+
+POST /api/chat
+--------------
+
+{
+  "prompt": "Explain dependency injection in Spring"
+}
+
+Returns
+-------
+
+{
+  "response": "Dependency Injection (DI) in Spring is a design pattern..."
+}
+

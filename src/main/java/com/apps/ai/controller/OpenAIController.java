@@ -18,6 +18,20 @@ public class OpenAIController {
 	
 	@Autowired
 	private AIService aiService;
+	
+	/**
+	 * Handles chat requests, maintaining session history.
+	 * 
+	 * @param prompt  The user's chat prompt.
+	 * @param session The HTTP session to maintain chat history.
+	 * @return The AI's response to the chat prompt.
+	 */
+	@GetMapping("/chat")
+	public ResponseEntity<String> getChatResponse(@RequestParam String prompt, HttpSession session) {
+
+	    String response = aiService.getChatResponse(prompt, session);
+	    return ResponseEntity.ok(response);
+	}
 
 	
 	/**
@@ -38,17 +52,4 @@ public class OpenAIController {
 	 * aiService.getChatResponse(prompt); return ResponseEntity.ok(response); }
 	 */
 	
-	/**
-	 * Handles chat requests, maintaining session history.
-	 * 
-	 * @param prompt  The user's chat prompt.
-	 * @param session The HTTP session to maintain chat history.
-	 * @return The AI's response to the chat prompt.
-	 */
-	@GetMapping("/chat")
-	public ResponseEntity<String> getChatResponse(@RequestParam String prompt, HttpSession session) {
-
-	    String response = aiService.getChatResponse(prompt, session);
-	    return ResponseEntity.ok(response);
-	}
 }
