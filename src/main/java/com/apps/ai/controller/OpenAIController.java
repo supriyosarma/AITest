@@ -21,6 +21,7 @@ public class OpenAIController {
 	@GetMapping("/ask")
 	public ResponseEntity<String> getResponse(@RequestParam String prompt) {
 		String response = aiService.getChatResponse(prompt);
+		System.out.println("test commit");
 		return ResponseEntity.ok(response);
 	}
 
